@@ -296,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
-                        playHappyBirthday();
+                        cpf_EV3Test();
                     }
 
                 }
@@ -565,6 +565,60 @@ public class MainActivity extends AppCompatActivity {
             cv_label02.setText("Error in PlayTone(" + e.getMessage() + ")");
         }
     }
+
+    private void cpf_EV3Test() {
+        try {
+            byte[] buffer = new byte[32];
+
+            buffer[0] = (byte) (32 - 2);
+            buffer[1] = 0;
+
+            buffer[2] = 34;
+            buffer[3] = 12;
+
+            buffer[4] = (byte) 0x80;
+
+            buffer[5] = 0;
+            buffer[6] = 0;
+
+            buffer[7] = (byte) 0x94;
+            buffer[8] = 2;
+
+            buffer[9] = (byte) 0x81;
+            buffer[10] = (byte) 0x64;
+
+            buffer[11] = (byte) 0x84;
+            buffer[12] = (byte) 0x2E;
+            buffer[13] = (byte) 0x2F;
+            buffer[14] = (byte) 0x75;
+            buffer[15] = (byte) 0x69;
+            buffer[16] = (byte) 0x2F; //  "/"
+            
+            // file name 
+            buffer[17] = (byte) 0x4F; // "O"
+            buffer[18] = (byte) 0x76; // "v"
+            buffer[19] = (byte) 0x65; // "e"
+            buffer[20] = (byte) 0x72; // "r"
+            buffer[21] = (byte) 0x70; // "p"
+            buffer[22] = (byte) 0x6F; // "o"
+            buffer[23] = (byte) 0x77; // "w"
+            buffer[24] = (byte) 0x65; // "e"
+            buffer[25] = (byte) 0x72; // "r"
+            buffer[26] = (byte) 0x41; // "A"
+            buffer[27] = (byte) 0x6C; // "l"
+            buffer[28] = (byte) 0x65; // "e"
+            buffer[29] = (byte) 0x72; // "r"
+            buffer[30] = (byte) 0x74; // "t"
+            buffer[31] = (byte) 0x00;
+
+            cv_os.write(buffer);
+            cv_os.flush();
+        } catch (Exception e) {
+            cv_label02.setText("Error in MoveForward(" + e.getMessage() + ")");
+        }
+    }
+
+
 
     
 }
